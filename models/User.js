@@ -43,6 +43,9 @@ const UserSchema = new Schema({
 // Call schema to build user model
 const User = model('User', UserSchema);
 
-
+// get all comments and replies
+UserSchema.virtual('getFriends').get(function() {
+    return this.friends.length;
+});
 
 module.exports = User;
