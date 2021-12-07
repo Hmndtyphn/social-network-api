@@ -81,7 +81,7 @@ const thoughtController = {
         .catch(err => res.json(err));
     },
 
-    // update single thought by id
+    // update single thought by id route
     updateThought({ params, body }, res) {
         Thought.findOneAndUpdate(
             { _id: params.id },
@@ -97,8 +97,17 @@ const thoughtController = {
         .catch(err => res.json(err));
     },
 
-    
-
-}
+    // delete single thought by id route
+    deleteThought({ params, body}, res) {
+        Thought.findOneAndDelete({ _id: params.id })
+        .then(thoughtDeleted => {
+            if (!thoughtDeleted) {
+                return res.status(404).json({ message: 'No thought found!'})
+            }
+            res.json(thoughtDeleted);
+        })
+        .catch(err => res.json(err));
+    }
+};
 
 module.exports = thoughtController
