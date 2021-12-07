@@ -28,6 +28,6 @@ router
     .post(createReaction)
 
 router
-    .route('/:thoughtId/:reactId')
+    .route('/:thoughtId/:reactionId')
 
 module.exports = router;
