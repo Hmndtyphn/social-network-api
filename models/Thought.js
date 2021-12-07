@@ -1,6 +1,6 @@
-// const { Schema, model, Types} = require('mongoose');
-// const moment = require('moment');
+const { Schema, model, Types} = require('mongoose');
+const moment = require('moment');
 
 
 
-// module.exports = Thought;
+module.exports = Thought;
