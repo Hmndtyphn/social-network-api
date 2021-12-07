@@ -1,4 +1,4 @@
 const User = require('./User');
-const Comments = require('./Comments');
+// const Comments = require('./Comments');
 
-module.exports = { User, Comments };
+module.exports = { User };
