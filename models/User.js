@@ -17,10 +17,10 @@ const UserSchema = new Schema({
         match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, 'Please enter a valid email for login']
     },
     
-    comments: [
+    thoughts: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Comments'
+            ref: 'Thought'
         }
     ],
 
@@ -44,7 +44,7 @@ const UserSchema = new Schema({
 const User = model('User', UserSchema);
 
 // get all comments and replies
-UserSchema.virtual('getFriends').get(function() {
+UserSchema.virtual('friendCount').get(function() {
     return this.friends.length;
 });
 
