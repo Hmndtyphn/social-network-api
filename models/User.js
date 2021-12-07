@@ -17,19 +17,19 @@ const UserSchema = new Schema({
         match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, 'Please enter a valid email for login']
     },
     
-    thoughts: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Thought'
-        }
-    ],
+    // thoughts: [
+    //     {
+    //         type: Schema.Types.ObjectId,
+    //         ref: 'Thought'
+    //     }
+    // ],
 
-    friends: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        }
-    ]
+    // friends: [
+    //     {
+    //         type: Schema.Types.ObjectId,
+    //         ref: 'User'
+    //     }
+    // ]
 },
 {
     toJSON: {
@@ -44,8 +44,8 @@ const UserSchema = new Schema({
 const User = model('User', UserSchema);
 
 // get all comments and replies
-UserSchema.virtual('friendCount').get(function() {
-    return this.friends.length;
-});
+// UserSchema.virtual('friendCount').get(function() {
+//     return this.friends.length;
+// });
 
 module.exports = User;
