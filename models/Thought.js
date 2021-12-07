@@ -11,8 +11,8 @@ const reactionSchema = new Schema(
        type: String,
        required: true,
        trim: true,
-       minLength: 1,
-       maxLength: 280
+       minlength: 1,
+       maxlength: 280
     },
     username: {
         type: String,
@@ -31,7 +31,38 @@ const reactionSchema = new Schema(
     }
 );
 
+const thoughtSchema = new Schema (
+{
+    thoughtText: {
+        type: String,
+        required: true,
+        minlength: 1,
+        maxlenght: 280
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        get: (createdTime) => moment(createdTime).format('MM DD, YY [at] hh:mm a')
+    },
+    username: {
+        type: String,
+        required: true,
+        ref: 'User'
+    },
+    reactions: [reactionSchema],
+},
+    {
+    toJSON: {
+        virtuals: true,
+        getters: true
+    },
+    id: false
+})
 
+const Thought = model('Thought', thoughtSchema);
 
+thoughtSchema.virtual('reactionCount').get(function() {
+    return this.reactions.length;
+});
 
 module.exports = Thought;
