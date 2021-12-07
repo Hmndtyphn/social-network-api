@@ -62,7 +62,7 @@ const thoughtController = {
         )
         .then(dbThoughtData => {
             if (!dbThoughtData) {
-                res.status(404).json({ message: 'No thought found! '});
+                res.status(404).json({ message: 'No thought found!'});
                 return;
             }
             res.json(dbThoughtData)
@@ -82,7 +82,22 @@ const thoughtController = {
     },
 
     // update single thought by id
-    updateThought
+    updateThought({ params, body }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.id },
+            body,
+            { new: true, runValidators: true }
+        )
+        .then(thoughtUpdated => {
+            if (!thoughtUpdated) {
+                return res.status(404).json({ message: 'No thought found!'});
+            }
+            res.json(thoughtUpdated);
+        })
+        .catch(err => res.json(err));
+    },
+
+    
 
 }
 
