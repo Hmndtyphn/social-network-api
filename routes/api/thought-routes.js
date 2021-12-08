@@ -1,5 +1,3 @@
-const { createReaction, deleteThought, deleteReaction } = require('../../controllers/thought-controller');
-
 const router = require('express').Router();
 
 const {
