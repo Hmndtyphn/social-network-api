@@ -1,3 +1,4 @@
+// require user model
 const { User } = require('../models')
 
 const userController = {
@@ -15,7 +16,7 @@ const userController = {
             res.status(500).json(err)
         });
     },
-    // get user by id using comments
+    // get user by id
     getUserById({ params }, res) {
         User.findOne({ _id: params.id })
         .populate({
@@ -40,7 +41,7 @@ const userController = {
         .catch(err => res.status(400).json(err));
     },
 
-    // add friend
+    // add friend to user id
     addFriend({ params }, res) {
         User.findOneAndUpdate(
             { _id: params.userId },
@@ -83,7 +84,7 @@ const userController = {
         .catch(err => res.status(400).json(err))
     },
 
-    // remove friend from user
+    // remove friend from user by user id/ friend id
     removeUser({ params }, res) {
         User.findOneAndUpdate(
             { _id: params.userId },

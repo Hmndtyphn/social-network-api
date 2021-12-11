@@ -1,3 +1,4 @@
+// require thought and user models
 const { Thought, User } = require('../models');
 
 const thoughtController = {
